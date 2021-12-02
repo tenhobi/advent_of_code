@@ -3,12 +3,12 @@ using System.IO;
 using System.Linq;
 using Shared;
 
-ISolver solver = new Day02();
+var solver = new Day02();
 solver.PrintSolutions("input.txt");
 
-public class Day02 : ISolver
+public class Day02 : Solver
 {
-    public string SolveFirst(string inputFile)
+    public override string SolveFirst(string inputFile)
     {
         List<string> data = File.ReadLines(inputFile).ToList();
         int horizontalPosition = 0;
@@ -36,7 +36,7 @@ public class Day02 : ISolver
         return (depth * horizontalPosition).ToString();
     }
 
-    public string SolveSecond(string inputFile)
+    public override string SolveSecond(string inputFile)
     {
         List<string> data = File.ReadLines(inputFile).ToList();
         int horizontalPosition = 0;
