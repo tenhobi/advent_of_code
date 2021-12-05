@@ -4,7 +4,7 @@ using System.Linq;
 using Shared;
 
 var solver = new Day05();
-solver.PrintSolutions("input.ref.txt");
+solver.PrintSolutions("input.txt");
 
 public class Day05 : Solver
 {
@@ -50,7 +50,7 @@ public class Day05 : Solver
         var counter = 0;
         for (var y = 0; y < size; y++)
         {
-            for (int x = 0; x < size; x++)
+            for (var x = 0; x < size; x++)
             {
                 if (area[y, x] > 1) counter++;
             }
@@ -69,7 +69,7 @@ public class Day05 : Solver
             return new Data(int.Parse(begin[0]), int.Parse(begin[1]), int.Parse(end[0]), int.Parse(end[1]));
         }).ToList();
 
-        int size = data.Select(d => new[] { d.X1, d.X2, d.Y1, d.Y2 }.Max()).Max() + 1;
+        var size = data.Select(d => new[] { d.X1, d.X2, d.Y1, d.Y2 }.Max()).Max() + 1;
         int[,] area = new int[size, size];
 
         foreach (var line in data)
@@ -79,7 +79,7 @@ public class Day05 : Solver
             {
                 var lesserY = line.Y1 < line.Y2 ? line.Y1 : line.Y2;
                 var biggerY = line.Y1 > line.Y2 ? line.Y1 : line.Y2;
-                for (int i = lesserY; i <= biggerY; i++)
+                for (var i = lesserY; i <= biggerY; i++)
                 {
                     area[i, line.X1]++;
                 }
@@ -89,7 +89,7 @@ public class Day05 : Solver
             {
                 var lesserX = line.X1 < line.X2 ? line.X1 : line.X2;
                 var biggerX = line.X1 > line.X2 ? line.X1 : line.X2;
-                for (int i = lesserX; i <= biggerX; i++)
+                for (var i = lesserX; i <= biggerX; i++)
                 {
                     area[line.Y1, i]++;
                 }
@@ -102,14 +102,14 @@ public class Day05 : Solver
                 {
                     if (line.Y1 < line.Y2)
                     {
-                        for (int i = line.Y1; i <= line.Y2; i++)
+                        for (var i = line.Y1; i <= line.Y2; i++)
                         {
                             area[i, line.X1 + (i - line.Y1)]++;
                         }
                     }
                     else
                     {
-                        for (int i = line.Y2; i <= line.Y1; i++)
+                        for (var i = line.Y2; i <= line.Y1; i++)
                         {
                             area[i, line.X2 - (i - line.Y2)]++;
                         }
@@ -120,14 +120,14 @@ public class Day05 : Solver
                 {
                     if (line.Y1 < line.Y2)
                     {
-                        for (int i = line.Y1; i <= line.Y2; i++)
+                        for (var i = line.Y1; i <= line.Y2; i++)
                         {
                             area[i, line.X1 - (i - line.Y1)]++;
                         }
                     }
                     else
                     {
-                        for (int i = line.Y2; i <= line.Y1; i++)
+                        for (var i = line.Y2; i <= line.Y1; i++)
                         {
                             area[i, line.X2 + (i - line.Y2)]++;
                         }
