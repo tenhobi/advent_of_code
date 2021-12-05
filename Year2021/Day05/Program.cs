@@ -4,13 +4,11 @@ using System.Linq;
 using Shared;
 
 var solver = new Day05();
-solver.PrintSolutions("input.txt");
+solver.PrintSolutions("input.ref.txt");
 
 public class Day05 : Solver
 {
     private record Data(int X1, int Y1, int X2, int Y2);
-
-    int size = 1000;
 
     public override string SolveFirst(string inputFile)
     {
@@ -19,11 +17,10 @@ public class Day05 : Solver
             var tmp = s.Split(" -> ");
             var begin = tmp[0].Split(",");
             var end = tmp[1].Split(",");
-            var x2 = int.Parse(end[0]);
-            var y2 = int.Parse(end[1]);
-            return new Data(int.Parse(begin[0]), int.Parse(begin[1]), x2, y2);
+            return new Data(int.Parse(begin[0]), int.Parse(begin[1]), int.Parse(end[0]), int.Parse(end[1]));
         }).ToList();
 
+        var size = data.Select(d => new [] {d.X1, d.X2, d.Y1, d.Y2}.Max()).Max() + 1;
         int[,] area = new int[size, size];
 
         foreach (var line in data)
@@ -33,7 +30,7 @@ public class Day05 : Solver
             {
                 var lesserY = line.Y1 < line.Y2 ? line.Y1 : line.Y2;
                 var biggerY = line.Y1 > line.Y2 ? line.Y1 : line.Y2;
-                for (int i = lesserY; i <= biggerY; i++)
+                for (var i = lesserY; i <= biggerY; i++)
                 {
                     area[i, line.X1]++;
                 }
@@ -69,11 +66,10 @@ public class Day05 : Solver
             var tmp = s.Split(" -> ");
             var begin = tmp[0].Split(",");
             var end = tmp[1].Split(",");
-            var x2 = int.Parse(end[0]);
-            var y2 = int.Parse(end[1]);
-            return new Data(int.Parse(begin[0]), int.Parse(begin[1]), x2, y2);
+            return new Data(int.Parse(begin[0]), int.Parse(begin[1]), int.Parse(end[0]), int.Parse(end[1]));
         }).ToList();
 
+        int size = data.Select(d => new[] { d.X1, d.X2, d.Y1, d.Y2 }.Max()).Max() + 1;
         int[,] area = new int[size, size];
 
         foreach (var line in data)
