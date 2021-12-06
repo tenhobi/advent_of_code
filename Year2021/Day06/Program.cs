@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Shared;
@@ -46,27 +47,13 @@ public class Day06 : Solver
 
         for (var i = 0; i < daysToCompute; i++)
         {
-            var additions = new long [9];
-            for (var daysLeft = 0; daysLeft < data.Length; daysLeft++)
+            var addition = data[0];
+            for (var daysLeft = 1; daysLeft < data.Length; daysLeft++)
             {
-                if (data[daysLeft] == 0) continue;
-
-                if (daysLeft == 0)
-                {
-                    additions[oldNewValue] += data[daysLeft];
-                    additions[initialNewValue] += data[daysLeft];
-                    data[daysLeft] = 0;
-                    continue;
-                }
-
-                additions[daysLeft - 1] += data[daysLeft];
-                data[daysLeft] = 0;
+                data[daysLeft - 1] = data[daysLeft];
             }
-
-            for (int j = 0; j < additions.Length; j++)
-            {
-                data[j] += additions[j];
-            }
+            data[oldNewValue] += addition;
+            data[initialNewValue] = addition;
         }
 
         return data.Sum().ToString();
