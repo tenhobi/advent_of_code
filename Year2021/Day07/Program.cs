@@ -21,25 +21,19 @@ public class Day07 : Solver
     public override string SolveSecond(string inputFile)
     {
         List<int> data = File.ReadLines(inputFile).ToList()[0].Split(",").Select(int.Parse).ToList();
-        var min = data.Min();
-        var max = data.Max();
-        var bestSum = int.MaxValue;
-
-        for (var center = min; center < max; center++)
+        var mean = (int)Math.Round(data.Sum() / (decimal)data.Count);
+        Console.WriteLine(mean);
+        var sum = data.Sum(i =>
         {
-            var sum = 0;
-            foreach (var difference in data.Select(value => Math.Abs(center - value)))
+            var subSum = 0;
+            for (var j = 1; j <= Math.Abs(i - mean); j++)
             {
-                for (var j = 1; j <= difference; j++)
-                {
-                    sum += j;
-                }
+                subSum += j;
             }
 
-            if (sum < bestSum) bestSum = sum;
-            ;
-        }
+            return subSum;
+        });
 
-        return bestSum.ToString();
+        return sum.ToString();
     }
 }
