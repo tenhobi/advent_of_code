@@ -1,0 +1,11 @@
+name: aoc_2022
+publish_to: none
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  meta: ^1.8.0
+
+dev_dependencies:
+  netglade_analysis: 1.0.0
