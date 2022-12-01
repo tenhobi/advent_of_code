@@ -1,16 +1,23 @@
+import 'dart:convert';
+import 'dart:io';
+
 abstract class Solver {
-  String get inputFile => 'input.txt';
+  String get inputFile => 'lib/src/day${day.toString().padLeft(2, '0')}/input.txt';
+
   int get day;
 
-  String solveFirst();
+  Future<List<String>> getFileLines() async =>
+      File(inputFile).openRead().map(utf8.decode).transform(const LineSplitter()).toList();
 
-  String solveSecond();
+  Future<String> solveFirst();
 
-  String getSolutions() {
+  Future<String> solveSecond();
+
+  Future<String> getSolutions() async {
     return '''
 Day ${day.toString().padLeft(2, '0')}:
-First task: ${solveFirst()}
-Second task: ${solveSecond()}
+First task: ${await solveFirst()}
+Second task: ${await solveSecond()}
 ''';
   }
 }

@@ -6,16 +6,16 @@ final daySolvers = [
   Day01Solver(),
 ];
 
-void main() {
-  runOnlyDay(1);
+Future<void> main() async {
+  await runOnlyDay(1);
 }
 
-void runOnlyDay(int day) {
-  stdout.writeln(daySolvers[day - 1].getSolutions());
+Future<void> runOnlyDay(int day) async {
+  stdout.writeln(await daySolvers[day - 1].getSolutions());
 }
 
-void runAll() {
+Future<void> runAll() async {
   for (var i = 1; i <= daySolvers.length; i++) {
-    runOnlyDay(i);
+    await runOnlyDay(i);
   }
 }
