@@ -1,7 +1,7 @@
-# Day 02
+# Day 03
 
-Source: <https://adventofcode.com/2022/day/2>
+Source: <https://adventofcode.com/2022/day/3>
 
-## --- Day 2: xyz ---
+## --- Day 3: xyz ---
 
 ## --- Part Two ---
