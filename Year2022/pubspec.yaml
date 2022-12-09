@@ -7,6 +7,7 @@ environment:
 dependencies:
   collection: ^1.17.0
   meta: ^1.8.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   netglade_analysis: 1.0.0

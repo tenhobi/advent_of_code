@@ -1,5 +1,4 @@
 import 'package:aoc_2022/src/shared/solver.dart';
-// import 'package:collection/collection.dart';
 
 class Day08Solver extends Solver {
   @override
@@ -118,7 +117,6 @@ class Day08Solver extends Solver {
       scores[i] = count;
     }
 
-    print('${coords} $scores');
     final product = scores.reduce((value, element) => value * element);
     return product;
   }
