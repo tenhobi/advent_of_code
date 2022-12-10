@@ -9,6 +9,7 @@ import 'package:aoc_2022/src/day06/solver.dart';
 import 'package:aoc_2022/src/day07/solver.dart';
 import 'package:aoc_2022/src/day08/solver.dart';
 import 'package:aoc_2022/src/day09/solver.dart';
+import 'package:aoc_2022/src/day10/solver.dart';
 
 final daySolvers = [
   Day01Solver(),
@@ -20,10 +21,11 @@ final daySolvers = [
   Day07Solver(),
   Day08Solver(),
   Day09Solver(),
+  Day10Solver(),
 ];
 
 Future<void> main() async {
-  await runOnlyDay(9);
+  await runOnlyDay(daySolvers.last.day);
 }
 
 Future<void> runOnlyDay(int day) async {
